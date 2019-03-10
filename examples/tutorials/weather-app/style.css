@@ -1,0 +1,75 @@
+body {
+	background-image: url("resources\\\\default.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	color: white;
+	text-shadow: 2px 2px 1px black;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+/* Target the search container: text box and search button */
+#searchContainer {
+	padding: 15px;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#searchContainer input {
+	width: 200px;
+}
+#searchContainer button {
+	background-color: rgb(1, 159, 198);
+	width: 75px;
+}
+.searchControl {
+	box-shadow: 2px 2px 5px black;
+	border: none;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+/* Target the whole <div> with the weather information */
+#weatherContainer {
+	background-color: rgba(0, 0, 0, 0.5);
+	box-shadow: 1px 1px 5px black;
+	padding: 50px;
+	border-radius: 10px;
+	position: absolute;
+	visibility: hidden;
+}
+#weatherContainer h1 {
+	margin: 5px;
+	font-size: 42px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+/* Target the city name, temperature, weather condition and icon */
+#weatherMain {
+	display: block;
+	margin-bottom: 20px;
+}
+/* Display each of the <div>s on their own line */
+#weatherMain div {
+	display: inline-block;
+}
+/* The `vertical-align` is needed so that the text is vertically aligned
+with the weather condition icon */
+#weatherDescriptionHeader {
+	font-size: 28px;
+	vertical-align: 50%;
+}
+#temperature {
+	font-size: 38px;
+	vertical-align: 34%;
+	padding-right: 5px;
+}
+/* Target the bottom details: wind speed and humidty levels */
+.bottomDetails {
+	display: block;
+	font-size: 24px;
+	text-align: right;
+}
+/* Leave a margin below the horizontal line */
+hr {
+	margin-bottom: 20px;
+}

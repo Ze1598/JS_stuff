@@ -1,0 +1,223 @@
+/* Load two fonts from the Assets folder */
+@font-face {
+	font-family: "Creepy";
+	src: url("Assets/Fonts/Creepy.woff") format("woff"), url("Assets/Fonts/Creepy.woff2") format("woff2");
+}
+@font-face {
+	font-family: "Lunacy";
+	src: url("Assets/Fonts/Lunacy.woff") format("woff"), url("Assets/Fonts/Lunacy.woff2") format("woff2");
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	/* <html> will stretch to, at least, the full height of the page */
+	min-height: 100vh;
+	/*Load a custom cursor*/
+	cursor: url("Assets/Cursors/GhostHover.cur"), auto;
+}
+
+body {
+	/* Make the background fill the whole page */
+	margin: 0;
+	/* Use a radial gradient for the page's background */
+	background: radial-gradient(#9D5900, #3D2200);
+}
+
+/* Style the page title */
+.page-title {
+	color: #FF6D00;
+	font-family: Creepy, serif;
+	font-weight: normal;
+	text-align: center;
+	font-size: 6em;
+}
+
+/* Make the data about time and flips fill the grid's first row */
+.game-info-container {
+	/* Make it so the first row of the grid only contains the contents of this
+		<div> */
+	grid-column: 1 / -1;
+	display: flex;
+	/* Put as much space as possible betwen items */
+	justify-content: space-between;
+}
+
+.game-info {
+	color: #FFBB89;
+	font-family: Lunacy, serif;
+	font-size: 4em;
+}
+
+.game-container {
+	/* Display the contents of this <div> as a grid */
+	display: grid;
+	/* Create 4 columns that size themselves automatically in accord to
+		the size of the contents they contain */
+	grid-template-columns: repeat(4, auto);
+	/* Add 10 pixels of space around each element of the <div> */
+	grid-gap: 10px;
+	margin: 50px;
+	justify-content: center;
+	perspective: 500px;
+}
+
+.card {
+	position: relative;
+	height: 175px;
+	width: 125px;
+}
+
+.card:hover {
+	cursor: url("Assets/Cursors/GhostHover.cur"), auto;
+}
+
+.card-face {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	backface-visibility: hidden;
+	border-radius: 12px;
+	border-width: 1px;
+	border-style: solid;
+	transition: transform 500ms ease-in-out;
+}
+
+.card.visible .card-back {
+	transform: rotateY(-180deg);
+}
+
+.card.visible .card-front {
+	transform: rotateY(0);
+}
+
+.card.matched .card-value {
+	animation: dance 1s linear infinite 500ms;
+}
+
+.overlay-text {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+	color: #FF6D00;
+	font-family: Creepy, serif;
+}
+
+.overlay-text-small {
+	font-size: .3em;
+}
+
+.overlay-text.visible {
+	display: flex;
+	flex-direction: column;
+	animation: overlay-grow 500ms forwards;
+}
+
+@keyframes overlay-grow {
+	from {
+		background-color: rgba(0, 0, 0, 0);
+		font-size: 0;
+
+	}
+	to {
+		background-color: rgba(0, 0, 0, 0.8);
+		font-size: 10em;
+	}
+}
+
+/*Define the `dance` animation*/
+@keyframes dance {
+	0%, 100% {
+		transform: rotate(0);
+	}
+	25% {
+		transform: rotate(-30deg);
+	}
+	75% {
+		transform: rotate(30deg);
+	}
+}
+
+.card-back {
+	background-color: black;
+	border-color: #FF6D00;
+}
+
+.card-front {
+	background-color: #FFBB89;
+	border-color: 333;
+	transform: rotateY(180deg);
+}
+
+.card-value {
+	transition: transform 100ms ease-in-out;
+	transform: scale(0.9);
+}
+
+.card-front:hover .card-value {
+	transform: scale(1);
+}
+
+.cob-web {
+	position: absolute;
+	width: 47px;
+	height: 47px;
+	transition: width 100ms ease-in-out, height 100ms ease-in-out;
+}
+
+.card-face:hover .cob-web {
+	width: 52px;
+	height: 52px;
+}
+
+.cob-web-top-left {
+	transform: rotate(270deg);
+	top: 0;
+	left: 0;
+}
+.cob-web-top-right {
+	top: 0;
+	right: 0;
+}
+.cob-web-bottom-right {
+	transform: rotate(90deg);
+	bottom: 0;
+	right: 0;
+}
+.cob-web-bottom-left {
+	transform: rotate(180deg);
+	bottom: 0;
+	left: 0;
+}
+
+.spider {
+	align-self: flex-start;
+	transform: translateY(-10px);
+	transition: transform 100ms ease-in-out;
+}
+
+.card-back:hover .spider {
+	transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+	.game-container {
+		grid-template-columns: repeat(2, auto);
+	}
+	.game-info-container {
+		flex-direction: column;
+		align-items: center;
+	}
+}

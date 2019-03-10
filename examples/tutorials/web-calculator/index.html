@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+	<h1>HTML Calculator</h1>
+
+	<div id="calc-parent">
+
+		<div class="row">
+			<div class="column" id="calc-display-val">0</div>
+		</div>
+		
+		<div class="row">
+			<div class="calc-btn column" id="calc-clear">AC</div>
+			<div class="calc-btn column" id="calc-backspace">&#8676</div>
+			<div class="calc-btn calc-btn-operator column" id="calc-divide">&#247</div>
+		</div>
+
+		<div class="row">
+			<div class="calc-btn calc-btn-num column" id="calc-seven">7</div>
+			<div class="calc-btn calc-btn-num column" id="calc-eight">8</div>
+			<div class="calc-btn calc-btn-num column" id="calc-nine">9</div>
+			<div class="calc-btn calc-btn-operator column" id="calc-multiply">x</div>
+		</div>
+
+		<div class="row">
+			<div class="calc-btn calc-btn-num column" id="calc-four">4</div>
+			<div class="calc-btn calc-btn-num column" id="calc-five">5</div>
+			<div class="calc-btn calc-btn-num column" id="calc-six">6</div>
+			<div class="calc-btn calc-btn-operator column" id="calc-minus">-</div>
+		</div>
+
+		<div class="row">
+			<div class="calc-btn calc-btn-num column" id="calc-one">1</div>
+			<div class="calc-btn calc-btn-num column" id="calc-two">2</div>
+			<div class="calc-btn calc-btn-num column" id="calc-three">3</div>
+			<div class="calc-btn calc-btn-operator column" id="calc-plus">+</div>
+		</div>
+
+		<div class="row">
+			<div class="calc-btn calc-btn-num column" id="calc-zero">0</div>
+			<div class="calc-btn column" id="calc-decimal">.</div>
+			<div class="calc-btn calc-btn-operator column" id="calc-equals">=</div>
+		</div>
+	</div>
+
+
+
+	<script>
+
+		// Decimal button
+		var decimalBtn = document.getElementById("calc-decimal");
+		// Clear button
+		var clearBtn = document.getElementById("calc-clear");
+		// Backspace button
+		var backspaceBtn = document.getElementById("calc-backspace");
+		// Display row
+		var displayValElement = document.getElementById("calc-display-val");
+
+		// The display displays a zero by default
+		var displayVal = "0";
+		// Declare a variable which will hold the first value of each operation
+		var pendingVal;
+		// Array to contain all the elements of each operation (first value,\
+		// operator and second value)
+		var evalStringArray = [];
+
+		// Get all the <div>s with a "calc-btn-num" class a.k.a. all\
+		// number buttons
+		var calcNumBtns = document.getElementsByClassName("calc-btn-num");
+		// Get all the <div>s with a "calc-btn-operator" class a.k.a. all\
+		// operator buttons
+		var calcOperatorBtns = document.getElementsByClassName("calc-btn-operator");
+
+		// Function to update the display
+		var updateDisplayVal = (clickObj) => {
+
+			// Get the text (the value) of the clicked button
+			var btnText = clickObj.target.innerText;
+
+			// If a zero is being displayed, then treat it as if it's\
+			// empty (we don't want to take the zero into considerations\
+			// for the arithmetic)
+			if (displayVal === "0") {
+				displayVal = "";
+			}
+
+			// Add the clicked button's value to the display (variable)
+			displayVal += btnText;
+			// Actually add the clicked button's value to the display (update\
+			// its HTML)
+			displayValElement.innerText = displayVal;
+		}
+
+		// Function to perform arithmetic
+		var performOperation = (clickObj) => {
+
+			// Get the text (the value) of the clicked button
+			var operator = clickObj.target.innerText;
+
+			// Use a switch/case to execute code for each operation
+			// For each operation (excluding the equality which executes\
+			// the operation saved in the array), save the current value\
+			// on display as the pending value, reset the display to zero,\
+			// and append to the array the pending value, as well as the\
+			// operator
+			switch (operator) {
+
+				// Addition
+				case ("+"):
+					pendingVal = displayVal;
+					displayVal = "0";
+					displayValElement.innerText = displayVal;
+					evalStringArray.push(pendingVal);
+					evalStringArray.push("+")
+					break;
+
+				// Subtraction
+				case ("-"):
+					pendingVal = displayVal;
+					displayVal = "0";
+					displayValElement.innerText = displayVal;
+					evalStringArray.push(pendingVal);
+					evalStringArray.push("-")
+					break;
+
+				// Multiplication
+				case ("x"):
+					pendingVal = displayVal;
+					displayVal = "0";
+					displayValElement.innerText = displayVal;
+					evalStringArray.push(pendingVal);
+					evalStringArray.push("*")
+					break;
+
+				// Division
+				case ("÷"):
+					pendingVal = displayVal;
+					displayVal = "0";
+					displayValElement.innerText = displayVal;
+					evalStringArray.push(pendingVal);
+					evalStringArray.push("/")
+					break;
+
+				// Execute operation
+				case ("="):
+					// Push to the array one last value (the second number\
+					// of the operation)
+					evalStringArray.push(displayVal);
+					// Execute the operation using the elements saved in the array
+					var evaluation = eval(evalStringArray.join(" "));
+					// Update the display
+					displayVal = evaluation + "";
+					displayValElement.innerText = displayVal;
+					// Reset the array for the next operation
+					evalStringArray = [];
+					break;
+			}
+		}
+
+
+		// Loop through the number buttons to add an event listener to each one
+		for (let i=0; i<calcNumBtns.length; i++) {
+			calcNumBtns[i].addEventListener("click", updateDisplayVal, false);
+		}
+
+		// Loop through the operator buttons to add an event listener to each one
+		for (let i=0; i<calcOperatorBtns.length; i++) {
+			calcOperatorBtns[i].addEventListener("click", performOperation, false);
+		}
+
+		// When clicked, the clear button clears the display and resets the array\
+		// i.e., "forgets" all input
+		clearBtn.onclick = () => {
+			// Reset the display
+			displayVal = "0";
+			// Now there's no pending value
+			pendingVal = undefined;
+			// Empty the array
+			evalStringArray = [];
+			// Update the display
+			displayValElement.innerHTML = displayVal;
+		}
+
+		// When clicked, the backspace button eliminates the last digit to be input.\
+		// If it was the last digit on the display, reset the display to show a zero
+		backspaceBtn.onclick = () => {
+
+			// Delete the last digit by slicing the display string from the beginning
+			// up to the second-last digit, inclusive, thus, removing the last digit
+			let lengthOfDisplayVal = displayVal.length;
+			displayVal = displayVal.slice(0, lengthOfDisplayVal-1);
+			
+			// If we deleted the last digit, reset the display to show a zero
+			if (displayVal === "") {
+				displayValElement.innerText = "0";
+			}
+
+			displayValElement.innerText = displayVal;
+		}
+
+		// WHen clicked, the decimal button adds a decimal point to the display, if there's\
+		// no decimal point on the display yet
+		decimalBtn.onclick = () => {
+
+			// Only add the decimal point if there's not one already
+			if ( !displayVal.includes(".") ) {
+				displayVal += ".";
+			}
+			// Update the display
+			displayValElement.innerText = displayVal;
+		}
+
+
+	</script>
+</body>
+</html>

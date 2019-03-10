@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100")
+
+body {
+	font-family: "Roboto", sans-serif;
+}
+
+#calc-parent {
+	margin-left: calc(50% - 100px)
+}
+
+.calc-btn {
+	background-color: silver;
+	color: black;
+	width: 25px;
+	height: 45px;
+	border: 1px solid grey;
+	text-align: center;
+	cursor: pointer;
+	font-size: 32px;
+	font-weight: 100px;
+	padding-top: 3px;
+}
+.calc-btn:hover {
+	background-color: orange;
+}
+
+.row {
+	display: table;
+	table-layout: fixed;
+	width: 200px;
+}
+.column {
+	display: table-cell;
+}
+
+#calc-zero {
+	width: 52.666666667px;
+	border-radius: 0 0 0 7px;
+}
+#calc-clear {
+	width: 52.666666667px;
+}
+
+#calc-display-val {
+	height: 80px;
+	color: white;
+	text-align: right;
+	border-left, border-top, border-right: 1px solid grey;
+	font-size: 48px;
+	background-color: #383838;
+	overflow: hidden;
+	white-space: nowrap;
+	padding: 12px;
+	border-radius: 7px 7px 0 0;
+}
+.calc-btn-operator {
+	background-color: orange;
+	color: white;
+}
+h1 {
+	text-align: center;
+	margin-top: 50px;
+}
+#calc-equals {
+	border-radius:  0 0 7px 0;
+}
