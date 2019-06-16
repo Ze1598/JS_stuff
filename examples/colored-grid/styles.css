@@ -1,0 +1,98 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: bold;
+    background-color: #e8e8e8;
+}
+
+:root {
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: 1fr 1.5fr 1fr 6.5fr;
+}
+
+/*---------------------------------------------------------------------------*/
+
+.title {
+	text-align: center;
+}
+
+/*---------------------------------------------------------------------------*/
+
+/* Grids will have their sections centered, with an in between gap of 10px */
+.grid {
+	display: grid;
+	justify-content: center;
+	align-content: center;
+	gap: 10px;
+}
+
+/* Create a 1x3 grid for the color picker choices */
+#color-picker-grid {
+	width: 600px;
+	height: 80px;
+	grid-template-columns: repeat(4, auto);
+}
+
+/* Style the color choice squares */
+.color-pick {
+	width: 65px;
+	height: 65px;
+	margin: 5px;
+	border-radius: 5px;
+    box-shadow: 0 0 10px 2px;
+}
+
+/*---------------------------------------------------------------------------*/
+
+/* Create a 4x4 grid for the colored board */
+.board-grid {
+	width: 600px;
+	height: 360px;
+	grid-template-columns: repeat(7, auto);
+	grid-template-rows: repeat(7, auto);
+	gap: 0;
+}
+
+/* Style the board squares */
+.board-item {
+	width: 50px;
+	height: 50px;
+	border-radius: 5px;
+    box-shadow: 0 0 10px 2px;
+}
+
+/*---------------------------------------------------------------------------*/
+
+#reset-button {
+	width: 100px;
+	height: 30px;
+	display: flex;
+	justify-content: center;
+	background-color: #e8e8e8;
+	border-radius: 5px;
+    box-shadow: 0 0 10px 2px;
+}
+
+/*---------------------------------------------------------------------------*/
+
+.color-red {
+	background-color: red;
+}
+.color-green {
+	background-color: green;
+}
+.color-blue {
+	background-color: blue;
+}
+.color-undefined {
+	background-color: #e8e8e8;
+}
