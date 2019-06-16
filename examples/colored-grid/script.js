@@ -10,6 +10,7 @@ for (let i=0; i<49; i++) {
 const redPickButton = document.getElementById("red-button")
 const greenPickButton = document.getElementById("green-button")
 const bluePickButton = document.getElementById("blue-button")
+const defaultPickButton = document.getElementById("undefined-button")
 const boardSquares = Array.from(document.getElementsByClassName("board-item"))
 const resetButton = document.getElementById("reset-button")
 
@@ -17,7 +18,7 @@ const colorOptions = ["red", "green", "blue"]
 let chosenColor
 
 // Add event listeners to handle color choices
-[redPickButton, greenPickButton, bluePickButton].forEach(colorBtn => {
+[redPickButton, greenPickButton, bluePickButton, defaultPickButton].forEach(colorBtn => {
 	colorBtn.addEventListener("click", chooseColor)
 })
 // Reset the board colors button
@@ -44,6 +45,9 @@ function chooseColor() {
 			break;
 		case "blue-button":
 			chosenColor = "blue"
+			break;
+		default:
+			chosenColor = "undefined"
 			break;
 	}
 }
