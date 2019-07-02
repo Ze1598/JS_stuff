@@ -10,6 +10,8 @@ This repository will only be updated once in a while.
 
 * (june 16th 2019) Updated with stuff I've done since the previous update
 
+* (july 2nd 2019) Updated with stuff I've done since the previous update
+
 ### External references:
 
 * Colored Grid demo: https://codepen.io/ze1598/full/EBKWwO

@@ -1,0 +1,7 @@
+ng new <appName>
+cd <appName>
+ng serve --open
+
+ng generate component <componentName>
+
+rm -rf .git

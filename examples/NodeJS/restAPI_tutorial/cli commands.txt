@@ -1,0 +1,7 @@
+﻿npm init
+npm i express mongoose
+npm i --save-dev dotenv nodemon
+
+npm run devStart
+
+C:\Program Files\MongoDB\Server\4.0\bin\mongo.exe
