@@ -12,6 +12,8 @@ This repository will only be updated once in a while.
 
 * (july 2nd 2019) Updated with stuff I've done since the previous update
 
+* (nov. 18th 2019) Updated with a NodeJS pagination tutorial and an Angular project about creating modal components which was used for a Medium article
+
 ### External references:
 
 * Colored Grid demo: https://codepen.io/ze1598/full/EBKWwO
